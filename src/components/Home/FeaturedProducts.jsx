@@ -1,3 +1,4 @@
+import ProductCard from "../Products/ProductCard";
 import "./FeaturedProducts.css";
 
 const FeaturedProducts = () => {
@@ -6,7 +7,9 @@ const FeaturedProducts = () => {
       <h2>주요제품</h2>
 
       <div className="align_center featured_products_list">
-        <article className="product_card">상품</article>
+        <ProductCard />
+        <ProductCard />
+        <ProductCard />
       </div>
     </section>
   );
