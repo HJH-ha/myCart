@@ -19,11 +19,11 @@ const CartPage = () => {
         <tbody>
           <tr>
             <td>iPhone 14</td>
-            <td>1200,000 원</td>
+            <td>1,200,000 원</td>
             <td className="align_center table_quantity_input">
               <QuantityInput />
             </td>
-            <td>1200,000 원</td>
+            <td>1,200,000 원</td>
             <td>
               <img
                 src={remove}
