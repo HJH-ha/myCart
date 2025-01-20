@@ -51,3 +51,14 @@
   width: 25px;
   margin-left: 5px;
 }
+
+.cart_counts {
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #6457f9;
+  color: #fff;
+  font-size: 15px;
+  margin-left: 5px;
+}
