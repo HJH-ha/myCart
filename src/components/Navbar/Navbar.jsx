@@ -6,12 +6,15 @@ import memo from "../../assets/memo.png";
 import order from "../../assets/package.png";
 import lock from "../../assets/locked.png";
 import LinkWithIcon from "./LinkWithIcon";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="align_center navbar">
       <div className="align_center">
-        <h1 className="navbar_heading">myCart</h1>
+        <NavLink to="/">
+          <h1 className="navbar_heading">myCart</h1>
+        </NavLink>
         <form className="align_center navbar_form">
           <input
             type="text"
@@ -30,9 +33,10 @@ const Navbar = () => {
         <LinkWithIcon title="가입" link="/signup" emoji={memo} />
         <LinkWithIcon title="내주문" link="/myorders" emoji={order} />
         <LinkWithIcon title="로그아웃" link="/logout" emoji={lock} />
-        <a href="/cart" className="align_center">
+        {/* NavLink 는 자동으로 active 클라스가 추가되므로 메뉴에는 이걸쓰는게 좋음 */}
+        <NavLink to="/cart" className="align_center">
           장바구니 <p className="align_center cart_counts">0</p>
-        </a>
+        </NavLink>
       </div>
     </nav>
   );
