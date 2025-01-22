@@ -2,9 +2,23 @@ import ProductCard from "./ProductCard";
 import "./ProductsList.css";
 import useData from "../../Hook/useData";
 import ProductCardSkeleton from "./ProductCardSkeleton";
+import { useSearchParams } from "react-router-dom";
 
 const ProductsList = () => {
-  const { data, error, isLoading } = useData("products");
+  const [search, setSearch] = useSearchParams(); // 요청주소 뒤의 쿼리스트링
+  const category = search.get("category"); // category = 값 을 가져옴
+  const { data, error, isLoading } = useData(
+    "products",
+    {
+      params: {
+        // category: category, < 원래 이문장처럼 사용해야함 이게 기본. 앞에가 키값 뒤에가 벨류값
+        //  우리는 키값, 벨류값이 같은 category라서 생략하고 하나만적음
+
+        category,
+      },
+    },
+    [category]
+  );
   // console.log(data);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
