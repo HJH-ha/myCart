@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 const ProductsList = () => {
   const [search, setSearch] = useSearchParams(); // 요청주소 뒤의 쿼리스트링
   const category = search.get("category"); // category = 값 을 가져옴
+  const page = search.get("page"); // 몇번째 페이지
   const { data, error, isLoading } = useData(
     "products",
     {
@@ -15,10 +16,17 @@ const ProductsList = () => {
         //  우리는 키값, 벨류값이 같은 category라서 생략하고 하나만적음
 
         category,
+        page,
       },
     },
-    [category]
+    [category, page]
   );
+
+  const handlePageChange = (page) => {
+    // 기존에 검색한 카테고리가 있으면 유지하면서 페이지만 업데이트
+    const currentParams = Object.fromEntries([...search]);
+    setSearch({ ...currentParams, page: page });
+  };
   // console.log(data);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -51,6 +59,7 @@ const ProductsList = () => {
               stock={product.stock}
             />
           ))}
+        <button onClick={() => handlePageChange(2)}>페이지 2</button>
       </div>
     </section>
   );
