@@ -3,6 +3,7 @@ import "./ProductsList.css";
 import useData from "../../Hook/useData";
 import ProductCardSkeleton from "./ProductCardSkeleton";
 import { useSearchParams } from "react-router-dom";
+import Pagination from "../Common/Pagination";
 
 const ProductsList = () => {
   const [search, setSearch] = useSearchParams(); // 요청주소 뒤의 쿼리스트링
@@ -46,8 +47,8 @@ const ProductsList = () => {
       <div className="products_list">
         {error && <em className="form_error">{error}</em>}
         {isLoading && skeletons.map((n) => <ProductCardSkeleton key={n} />)}
-
         {data.products &&
+          !isLoading &&
           data.products.map((product) => (
             <ProductCard
               key={product._id}
@@ -59,8 +60,16 @@ const ProductsList = () => {
               stock={product.stock}
             />
           ))}
-        <button onClick={() => handlePageChange(2)}>페이지 2</button>
       </div>
+      {/* 페이지네이션 */}
+      {data && (
+        <Pagination
+          total={data.totalProducts}
+          perPage={8}
+          onClick={handlePageChange}
+          currentPage={page}
+        />
+      )}
     </section>
   );
 };

@@ -1,4 +1,4 @@
-import "/Pagination.css";
+import "./Pagination.css";
 
 //전체아이템개수, 한페이지표시 아이템수, 클릭함수, 현재페이지
 const Pagination = ({ total, perPage, onClick, currentPage }) => {
