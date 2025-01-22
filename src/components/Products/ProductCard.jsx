@@ -25,8 +25,8 @@ const ProductCard = ({
       </div>
 
       <div className="product_details">
-        <h3 className="product_price">{price?.toLocaleString("ko-KR")}원</h3>
         <p className="product_title">{title}</p>
+        <h3 className="product_price">{price?.toLocaleString("ko-KR")}원</h3>
 
         <footer className="align_center product_info_footer">
           <div className="align_center">

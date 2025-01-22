@@ -54,6 +54,7 @@ const ProductsList = () => {
               key={product._id}
               id={product._id}
               image={product.images[0]}
+              title={product.title}
               price={product.price}
               rating={product.reviews.rate}
               ratingCounts={product.reviews.counts}
