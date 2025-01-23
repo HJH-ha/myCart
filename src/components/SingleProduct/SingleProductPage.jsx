@@ -8,10 +8,10 @@ import Loader from "../Common/Loader";
 const SingleProductPage = ({ addToCart }) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   const { data: product, error, isLoading } = useData(`/products/${id}`);
-  console.log(product);
+  // console.log(product);
 
   const [quantity, setQuantity] = useState(1);
 

@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Routing from "./components/Routing/Routing";
 import { jwtDecode } from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
+import { addToCartAPI } from "./services/cartServices";
 
 //만약에 토큰이 있으면 axios 설정에 추가됨
 setAuthToken(localStorage.getItem("token"));
@@ -22,6 +23,14 @@ function App() {
       updatedCart[productIndex].quantity += quantity;
     }
     setCart(updatedCart);
+
+    addToCartAPI(product._id, quantity)
+      .then((res) => {
+        console.log(res.data);
+      }) // then은 axios로 성공했을때
+      .catch((err) => {
+        console.log(err.response);
+      }); //catch는 axios로 실패했을때
   };
 
   useEffect(() => {
