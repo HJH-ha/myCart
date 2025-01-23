@@ -8,7 +8,7 @@ import lock from "../../assets/locked.png";
 import LinkWithIcon from "./LinkWithIcon";
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, cartCount }) => {
   return (
     <nav className="align_center navbar">
       <div className="align_center">
@@ -41,7 +41,7 @@ const Navbar = ({ user }) => {
             <LinkWithIcon title="로그아웃" link="/logout" emoji={lock} />
             {/* NavLink 는 자동으로 active 클라스가 추가되므로 메뉴에는 이걸쓰는게 좋음 */}
             <NavLink to="/cart" className="align_center shopping-cart">
-              장바구니 <p className="align_center cart_counts">0</p>
+              장바구니 <p className="align_center cart_counts">{cartCount}</p>
             </NavLink>
           </>
         )}
