@@ -67,3 +67,7 @@
 .navbar_links > a.active {
   font-weight: 600;
 }
+
+.shopping-cart {
+  padding-bottom: 10px;
+}

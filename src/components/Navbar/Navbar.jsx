@@ -34,7 +34,7 @@ const Navbar = () => {
         <LinkWithIcon title="내주문" link="/myorders" emoji={order} />
         <LinkWithIcon title="로그아웃" link="/logout" emoji={lock} />
         {/* NavLink 는 자동으로 active 클라스가 추가되므로 메뉴에는 이걸쓰는게 좋음 */}
-        <NavLink to="/cart" className="align_center">
+        <NavLink to="/cart" className="align_center shopping-cart">
           장바구니 <p className="align_center cart_counts">0</p>
         </NavLink>
       </div>

@@ -17,7 +17,7 @@ const SignupPage = () => {
   const submitData = async (formData) => {
     try {
       await signup(formData, profilePic);
-      reset();
+      window.location = "/";
     } catch (err) {
       setFormError(err.response.data.message);
     }

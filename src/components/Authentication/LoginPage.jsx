@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import "./LoginPage.css";
 import { useForm } from "react-hook-form";
+import { login } from "../../services/userServices";
 
 const LoginPage = () => {
   const {
@@ -10,9 +11,15 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm();
 
-  const submitData = (formData) => {
-    console.log(formData);
-    reset();
+  const [formError, setFormError] = useState("");
+
+  const submitData = async (formData) => {
+    try {
+      await login(formData);
+      window.location = "/";
+    } catch (err) {
+      setFormError(err.response.data.message);
+    }
   };
 
   //  const passwordRef = useRef(null);
@@ -88,7 +95,7 @@ const LoginPage = () => {
               비밀번호 보이게
             </button> */}
           </div>
-
+          {formError && <em className="form_error">{formError}</em>}
           <button type="submit" className="search_button form_submit">
             Login
           </button>
