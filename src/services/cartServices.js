@@ -15,3 +15,13 @@ export function removeFromCartAPI(id) {
   return apiClient.patch(`cart/remove/${id}`);
   // patch << 보통 업데이트할때 많이 사용 remove도 업데이트로 patch사용
 }
+
+// 장바구니 삼풍의 수량증가 +1
+export function increaseProductAPI(id) {
+  return apiClient.patch(`cart/increase/${id}`);
+}
+
+// 장바구니 삼풍의 수량감소 -1
+export function decreaseProductAPI(id) {
+  return apiClient.patch(`cart/decrease/${id}`);
+}
