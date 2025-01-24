@@ -111,7 +111,7 @@ function App() {
     <>
       <UserContext.Provider value={user}>
         <CartContext.Provider
-          value={{ cart, addToCart, removeFromCart, updateCart }}
+          value={{ cart, addToCart, removeFromCart, updateCart, setCart }}
         >
           <div className="app">
             <Navbar user={user} cartCount={cart.length} />

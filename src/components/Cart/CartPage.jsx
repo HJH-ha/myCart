@@ -6,13 +6,28 @@ import Table from "../Common/Table";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import CartContext from "../../contexts/CartContext";
+import { checkoutAPI } from "../../services/orderServices";
+import { toast } from "react-toastify";
 
 const CartPage = () => {
   // console.log(cart);
   const [subTotal, setSubTotal] = useState(0);
   const user = useContext(UserContext); // useContext로 UserContext 가져오기
-  const { cart, addToCart, removeFromCart, updateCart } =
+  const { cart, addToCart, removeFromCart, updateCart, setCart } =
     useContext(CartContext);
+
+  const checkout = () => {
+    const oldCart = [...cart];
+    setCart([]); // 카트 비우기
+    checkoutAPI()
+      .then(() => {
+        toast.success("주문 성공!");
+      })
+      .catch(() => {
+        toast.error("checkout 중 에러발생.");
+        setCart(oldCart);
+      });
+  };
 
   // console.log(user);
   useEffect(() => {
@@ -80,7 +95,9 @@ const CartPage = () => {
         </tbody>
       </table>
 
-      <button className="search_button checkout_button">결제하기</button>
+      <button className="search_button checkout_button" onClick={checkout}>
+        결제하기
+      </button>
     </section>
   );
 };
