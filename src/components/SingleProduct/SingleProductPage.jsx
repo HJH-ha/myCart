@@ -5,11 +5,13 @@ import { useParams } from "react-router-dom";
 import useData from "../../Hook/useData";
 import Loader from "../Common/Loader";
 import CartContext from "../../contexts/CartContext";
+import UserContext from "../../contexts/UserContext";
 
 const SingleProductPage = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const { id } = useParams();
   const { addToCart } = useContext(CartContext);
+  const user = useContext(UserContext);
   // console.log(id);
 
   const { data: product, error, isLoading } = useData(`/products/${id}`);
@@ -50,22 +52,26 @@ const SingleProductPage = () => {
               ￦ {product.price.toLocaleString("ko-KR")} 원
             </p>
 
-            <h2 className="quantity_title">구매개수:</h2>
-            <div className="align_center quantity_input">
-              <QuantityInput
-                quantity={quantity}
-                setQuantity={setQuantity}
-                stock={product.stock}
-                cartPage={false}
-              />
-            </div>
+            {user && (
+              <>
+                <h2 className="quantity_title">구매개수:</h2>
+                <div className="align_center quantity_input">
+                  <QuantityInput
+                    quantity={quantity}
+                    setQuantity={setQuantity}
+                    stock={product.stock}
+                    cartPage={false}
+                  />
+                </div>
 
-            <button
-              onClick={() => addToCart(product, quantity)}
-              className="search_button add_cart"
-            >
-              장바구니 추가
-            </button>
+                <button
+                  onClick={() => addToCart(product, quantity)}
+                  className="search_button add_cart"
+                >
+                  장바구니 추가
+                </button>
+              </>
+            )}
           </div>
         </>
       )}
