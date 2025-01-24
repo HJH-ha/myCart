@@ -1,44 +1,43 @@
 import "./ProductCard.css";
-import iphone from "../../assets/iphone.jpg";
 import star from "../../assets/white-star.png";
 import basket from "../../assets/basket.png";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import CartContext from "../../contexts/CartContext";
 
-const ProductCard = ({
-  id,
-  image,
-  price,
-  title,
-  rating,
-  ratingCounts,
-  stock,
-}) => {
+const ProductCard = ({ product }) => {
+  const { addToCart } = useContext(CartContext);
   return (
     <article className="product_card">
       <div className="product_image">
-        <NavLink to={`/product/${id}`}>
+        <NavLink to={`/product/${product?._id}`}>
           <img
-            src={`http://localhost:5000/products/${image}`}
+            src={`http://localhost:5000/products/${product?.images[0]}`}
             alt="product image"
           />
         </NavLink>
       </div>
 
       <div className="product_details">
-        <p className="product_title">{title}</p>
-        <h3 className="product_price">{price?.toLocaleString("ko-KR")}원</h3>
+        <p className="product_title">{product?.title}</p>
+        <h3 className="product_price">
+          {product?.price.toLocaleString("ko-KR")}원
+        </h3>
 
         <footer className="align_center product_info_footer">
           <div className="align_center">
             <p className="align_center product_rating">
-              <img src={star} alt="star" /> {rating}
+              <img src={star} alt="star" /> {product?.reviews.rate}
             </p>
-            <p className="product_review_count">{ratingCounts}</p>
+            <p className="product_review_count">{product?.reviews.counts}</p>
           </div>
 
           {/* 제품에 재고수가 1개 이상일때만 장바구니 가능 */}
-          {stock > 0 && (
-            <button className="add_to_cart">
+          {product?.stock > 0 && (
+            <button
+              className="add_to_cart"
+              onClick={() => addToCart(product, 1)}
+            >
               <img src={basket} alt="basket button" />
             </button>
           )}
