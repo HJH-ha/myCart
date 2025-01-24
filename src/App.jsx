@@ -117,7 +117,7 @@ function App() {
             <Navbar user={user} cartCount={cart.length} />
             <main>
               <ToastContainer position="bottom-right" autoClose={2000} />
-              <Routing />
+              <Routing user={user} />
             </main>
           </div>
         </CartContext.Provider>
