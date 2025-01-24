@@ -45,9 +45,28 @@ function App() {
     const oldCart = [...cart]; // 카트복사
     const newCart = oldCart.filter((item) => item.product._id !== id);
     setCart(newCart);
-    removeFromCartAPI(id).catch((err) => {
-      toast.error("장바구니 삭품 삭제 에러");
-    });
+    removeFromCartAPI(id)
+      .then((res) => toast.success("삭제하였습니다"))
+      .catch((err) => {
+        toast.error("장바구니 삭품 삭제 에러");
+      });
+  };
+
+  const updateCart = (type, id) => {
+    const updatedCart = [...cart]; // 카트복사
+    const productIndex = updatedCart.findIndex(
+      (item) => item.product._id === id
+    );
+
+    if (type === "increase") {
+      updatedCart[productIndex].quantity += 1;
+      setCart(updatedCart);
+    }
+
+    if (type === "decrease") {
+      updatedCart[productIndex].quantity -= 1;
+      setCart(updatedCart);
+    }
   };
 
   //서버에서 장바구니 정보 가져옴
@@ -83,7 +102,9 @@ function App() {
   return (
     <>
       <UserContext.Provider value={user}>
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+        <CartContext.Provider
+          value={{ cart, addToCart, removeFromCart, updateCart }}
+        >
           <div className="app">
             <Navbar user={user} cartCount={cart.length} />
             <main>
