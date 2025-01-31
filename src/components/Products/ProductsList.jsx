@@ -9,18 +9,19 @@ const ProductsList = () => {
   const [search, setSearch] = useSearchParams(); // 요청주소 뒤의 쿼리스트링
   const category = search.get("category"); // category = 값 을 가져옴
   const page = search.get("page"); // 몇번째 페이지
+  const searchQuery = search.get("search"); // 검색
   const { data, error, isLoading } = useData(
     "products",
     {
       params: {
         // category: category, < 원래 이문장처럼 사용해야함 이게 기본. 앞에가 키값 뒤에가 벨류값
         //  우리는 키값, 벨류값이 같은 category라서 생략하고 하나만적음
-
+        search: searchQuery,
         category,
         page,
       },
     },
-    [category, page]
+    [searchQuery, category, page]
   );
 
   const handlePageChange = (page) => {
