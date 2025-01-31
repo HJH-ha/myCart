@@ -10,7 +10,7 @@ const HomePage = () => {
       <HeroSection
         title="아이폰 14 프로 그 이상"
         subtitle="Experience the power of the latest iPhone 14 with our most Pro camera ever."
-        link="/"
+        link="/product/678f0b67ea8fb5482d4ccd37"
         image={iphone}
       />
 
@@ -19,7 +19,7 @@ const HomePage = () => {
       <HeroSection
         title="궁극의 장비를 세팅하세요"
         subtitle="You can add Studio Display and colour-matched Magic accessories to your bag after configure your Mac mini."
-        link="/"
+        link="/product/678f0b67ea8fb5482d4ccd3f"
         image={mac}
       />
     </div>
